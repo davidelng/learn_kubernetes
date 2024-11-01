@@ -69,7 +69,18 @@ We can scale an application at container level or at pod level (having multiple 
 
 We can set limits on cpu and memory so kubernetes automatically throttles the pods so they don't consume to much resources.
 
-A Horizontal Pod Autoscaler can automatically scale the number of Pods in a Deployment based on observed CPU utilization or other custom metrics
+A Horizontal Pod Autoscaler can automatically scale the number of Pods in a Deployment based on observed CPU utilization or other custom metrics.
+
+Besides memory limits, a pod can request an amount of memory, if the memory requested isn't available kubernetes won't allocate it in the node. If requests and limits are not set properly we'll risk to crash the pods or scaling too many pods.
+
+Some rules of thumb for the autoscaler:
+
+- Set memory requests ~10% higher than the average memory usage of your pods
+- Set CPU requests to 50% of the average CPU usage of your pods
+- Set memory limits ~100% higher than the average memory usage of your pods
+- Set CPU limits ~100% higher than the average CPU usage of your pods
+
+Because requests are used to schedule pods, you want to make sure that your requests are high enough that once scheduled, your pods will have the resources, but not so high that you're wasting resources.
 
 ## Commands used
 
