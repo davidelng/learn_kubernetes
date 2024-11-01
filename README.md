@@ -16,6 +16,10 @@ A cluster is a group of nodes.
 
 Everything (like pods or services) in a kubernetes cluster has an internal IP.
 
+## Namespaces
+
+Namespace are useful to keep everything organized, every kubernetes object must have a unique name in its namespace, but names can be reused in different namespaces. The kube-system is the kubernetes namespace, we've been working in the default one.
+
 ### Deployments
 
 Kubernetes figures out where to place pods based on how what resources they need.
@@ -61,11 +65,11 @@ There are volumes in kubernetes, they can be non-persistent/ephimeral or persist
 
 ### Scaling
 
-We can scale an application at container level or at pod level (having multiple containers in a pod and multiple pods).
+We can scale an application at container level or at pod level (having multiple containers in a pod and multiple pods). In kubernetes scaling is usually done horizontally.
 
-## Namespaces
+We can set limits on cpu and memory so kubernetes automatically throttles the pods so they don't consume to much resources.
 
-Namespace are useful to keep everything organized, every kubernetes object must have a unique name in its namespace, but names can be reused in different namespaces. The kube-system is the kubernetes namespace, we've been working in the default one.
+A Horizontal Pod Autoscaler can automatically scale the number of Pods in a Deployment based on observed CPU utilization or other custom metrics
 
 ## Commands used
 
@@ -89,6 +93,7 @@ Namespace are useful to keep everything organized, every kubernetes object must 
 - kubectl get pv
 - kubectl get (namespaces|ns)
 - kubectl create ns NAMESPACE
+- kubectl describe pod
 
 ## Minikube
 
@@ -96,4 +101,5 @@ Namespace are useful to keep everything organized, every kubernetes object must 
 - minikube start --extra-config "apiserver.cors-allowed-origins=["http://example.com"]"
 - minikube dashboard --port=PORT
 - minikube addons enable ingress
+- minikube addons enable metrics-server
 - minikube tunnel -c
