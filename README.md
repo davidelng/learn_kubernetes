@@ -47,6 +47,8 @@ services are built on top of each other (a LoadBalancer is built on a NodePort t
 
 ClusterIP are meant to be accessed within the cluster, while NodePort and LoadBalancer are used when you expose a service to the outside world. ExternalName is used for DNS.
 
+Kubernetes automatically creates DNS for each service that can be used to route http traffic between services in the format `<service-name>.<namespace>.svc.cluster.local`
+
 ### Ingresses
 
 To expose applications to the outside world sometimes an Ingress object is used instead of a NodePort because it also allows you to host multiple services on the same IP or same port, terminate SSL and integrate with external DNS.
@@ -61,6 +63,10 @@ There are volumes in kubernetes, they can be non-persistent/ephimeral or persist
 
 We can scale an application at container level or at pod level (having multiple containers in a pod and multiple pods).
 
+## Namespaces
+
+Namespace are useful to keep everything organized, every kubernetes object must have a unique name in its namespace, but names can be reused in different namespaces. The kube-system is the kubernetes namespace, we've been working in the default one.
+
 ## Commands used
 
 ## Kubectl
@@ -74,12 +80,15 @@ We can scale an application at container level or at pod level (having multiple 
 - kubectl proxy
 - kubectl logs PODNAME --all-containers
 - kubectl delete pod PODNAME
+- kubectl delete resource resourceName
 - kubectl get replicasets
 - kubectl apply -f FILE
 - kubectl get configmaps
 - kubectl get (svc|service) NAME -o yaml
 - kubectl get pvc
 - kubectl get pv
+- kubectl get (namespaces|ns)
+- kubectl create ns NAMESPACE
 
 ## Minikube
 
