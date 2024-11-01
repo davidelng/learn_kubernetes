@@ -21,3 +21,15 @@ spec:
                 configMapKeyRef:
                   name: synergychat-api-configmap
                   key: API_PORT
+            - name: API_DB_FILEPATH
+              valueFrom:
+                configMapKeyRef:
+                  name: synergychat-api-configmap
+                  key: API_DB_FILEPATH
+          volumeMounts:
+            - name: synergychat-api-volume
+              mountPath: /persist
+      volumes:
+        - name: synergychat-api-volume # persisten
+          persistentVolumeClaim:
+            claimName: synergychat-api-pvc

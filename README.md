@@ -53,6 +53,14 @@ To expose applications to the outside world sometimes an Ingress object is used 
 
 Ingresses are used in production environments.
 
+### Volumes
+
+There are volumes in kubernetes, they can be non-persistent/ephimeral or persistent. A persistent volume is a cluster level resource attached to a pod, and they can be static (created manually) or dynamic (created automatically). A PVC (persistent volume claim) is a request for a persistent volume.
+
+### Scaling
+
+We can scale an application at container level or at pod level (having multiple containers in a pod and multiple pods).
+
 ## Commands used
 
 ## Kubectl
@@ -64,12 +72,14 @@ Ingresses are used in production environments.
 - kubectl get pods -o wide
 - kubectl port-forward PODNAME 8080:8080
 - kubectl proxy
-- kubectl logs PODNAME
+- kubectl logs PODNAME --all-containers
 - kubectl delete pod PODNAME
 - kubectl get replicasets
 - kubectl apply -f FILE
 - kubectl get configmaps
 - kubectl get (svc|service) NAME -o yaml
+- kubectl get pvc
+- kubectl get pv
 
 ## Minikube
 
