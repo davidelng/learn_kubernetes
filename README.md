@@ -51,6 +51,8 @@ ClusterIP are meant to be accessed within the cluster, while NodePort and LoadBa
 
 To expose applications to the outside world sometimes an Ingress object is used instead of a NodePort because it also allows you to host multiple services on the same IP or same port, terminate SSL and integrate with external DNS.
 
+Ingresses are used in production environments.
+
 ## Commands used
 
 ## Kubectl
@@ -65,7 +67,7 @@ To expose applications to the outside world sometimes an Ingress object is used 
 - kubectl logs PODNAME
 - kubectl delete pod PODNAME
 - kubectl get replicasets
-- kubectl apply -f deployment.yaml
+- kubectl apply -f FILE
 - kubectl get configmaps
 - kubectl get (svc|service) NAME -o yaml
 
@@ -74,3 +76,5 @@ To expose applications to the outside world sometimes an Ingress object is used 
 - minikube version
 - minikube start --extra-config "apiserver.cors-allowed-origins=["http://example.com"]"
 - minikube dashboard --port=PORT
+- minikube addons enable ingress
+- minikube tunnel -c
